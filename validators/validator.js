@@ -13,17 +13,20 @@ const validateDeleteCourse = [
 ];
 
 const validate = (req, res, next) => {
-  const errors = validationResult(req)
+  const errors = validationResult(req);
+
   if (errors.isEmpty()) {
-    return next()
+    return next();
   }
-  const extractedErrors = []
-  errors.array().map(err => extractedErrors.map({ [err.path]: err.msg }))
+
+  const extractedErrors = errors.array().map(err => ({
+    [err.path]: err.msg
+  }));
 
   return res.status(400).json({
     errors: extractedErrors,
-  })
-}
+  });
+};
 
 module.exports = {
   validateCourse,

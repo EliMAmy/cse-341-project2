@@ -7,13 +7,13 @@ GET http://localhost:3001/courses/69c43c0e92f2e902a3c5a84d
 
 
 ###Put contact
-PUT http://localhost:3001/courses/69c4ac144d7a2b0b2abff214
+PUT http://localhost:3001/courses/69c43d5892f2e902a3c5a850
 Content-type: application/json
 
 {
     "name": "Web development",
     "term": "2025 Block 2",
-    "credits": 3
+    "credits": 2
 }
 ###Delete contact
-DELETE http://localhost:3001/courses/69c4ac144d7a2b0b2abff214
+DELETE http://localhost:3001/courses/69c43d5892f2e902a3c5a850
