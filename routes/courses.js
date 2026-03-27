@@ -7,6 +7,10 @@ const validatorCourse = require("../validators/validator");
 router.get("/",coursesController.getAll);
 router.get("/:id",coursesController.getSingle);
 
+router.post("/",
+    validatorCourse.validateCourse,
+    validatorCourse.validate,
+    coursesController.createCourse);
 
 router.put("/:id",    
     validatorCourse.validateCourse,

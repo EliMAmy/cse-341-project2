@@ -3,21 +3,21 @@ const ObjectId = require("mongodb").ObjectId;
 
 // GET ALL
 const getAll = async (req, res) => {
-  //#swagger.tags=["Courses"]
+  //#swagger.tags=["Certificates"]
   try {
     const result = await mongodb
       .getDatabase()
       .db()
-      .collection("courses")
+      .collection("certificates")
       .find();
 
-    const courses = await result.toArray();
+    const certificates = await result.toArray();
 
     res.setHeader("Content-Type", "application/json");
-    res.status(200).json(courses);
+    res.status(200).json(certificates);
   } catch (error) {
     res.status(500).json({
-      message: "Error retrieving courses",
+      message: "Error retrieving certificates",
       error: error.message,
     });
   }
@@ -25,101 +25,92 @@ const getAll = async (req, res) => {
 
 // GET SINGLE
 const getSingle = async (req, res) => {
-  //#swagger.tags=["Courses"]
+  //#swagger.tags=["Certificates"]
   try {
     if (!ObjectId.isValid(req.params.id)) {
-      return res.status(400).json("Invalid course ID");
+      return res.status(400).json("Invalid certificate ID");
     }
 
-    const courseId = new ObjectId(req.params.id);
+    const certificateId = new ObjectId(req.params.id);
 
     const result = await mongodb
       .getDatabase()
       .db()
-      .collection("courses")
-      .findOne({ _id: courseId });
+      .collection("certificates")
+      .findOne({ _id: certificateId });
 
     if (!result) {
-      return res.status(404).json("Course not found");
+      return res.status(404).json("Certificate not found");
     }
 
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({
-      message: "Error retrieving course",
+      message: "Error retrieving certificate",
       error: error.message,
     });
   }
 };
 
-const createCourse = async (req, res) => {
-  //#swagger.tags=["Courses"]
+const createCertificate = async (req, res) => {
+  //#swagger.tags=["Certificates"]
   try {
-    const course = {
+    const certificate = {
       code: req.body.code,
       name: req.body.name,
-      term: req.body.term,
-      credits: req.body.credits,
       status: req.body.status,
-      courseLevel: req.body.courseLevel,
-      class: req.body.class,
     };
 
     const response = await mongodb
       .getDatabase()
       .db()
-      .collection("courses") 
-      .insertOne(course);
+      .collection("certificates") 
+      .insertOne(certificate);
 
     if (response.acknowledged) {
       return res.status(201).json({
-        message: "Course created successfully",
+        message: "Certificate created successfully",
         id: response.insertedId,
       });
     }
 
     return res.status(500).json({
-      message: "Failed to create course",
+      message: "Failed to create certificate",
     });
 
   } catch (error) {
     res.status(500).json({
-      message: "Error creating course",
+      message: "Error creating certificate",
       error: error.message,
     });
   }
 };
 
 // UPDATE
-const updateCourse = async (req, res) => {
-  //#swagger.tags=["Courses"]
+const updateCertificate = async (req, res) => {
+  //#swagger.tags=["Certificates"]
   try {
     if (!ObjectId.isValid(req.params.id)) {
-      return res.status(400).json("Invalid course ID");
+      return res.status(400).json("Invalid certificate ID");
     }
 
-    const courseId = new ObjectId(req.params.id);
+    const certificateId = new ObjectId(req.params.id);
 
-    const course = {
+    const certificate = {
       code: req.body.code,
       name: req.body.name,
-      term: req.body.term,
-      credits: req.body.credits,
       status: req.body.status,
-      courseLevel: req.body.courseLevel,
-      class: req.body.class,
     };
-
 
     const response = await mongodb
       .getDatabase()
       .db()
-      .collection("courses")
-      .replaceOne({ _id: courseId }, course);
+      .collection("certificates")
+      .replaceOne({ _id: certificateId }, certificate);
 
     if (response.matchedCount === 0) {
-      return res.status(404).json("Course not found");
+      return res.status(404).json("Certificate not found");
     }
 
     if (response.modifiedCount > 0) {
@@ -129,36 +120,36 @@ const updateCourse = async (req, res) => {
     res.status(200).json("No changes made");
   } catch (error) {
     res.status(500).json({
-      message: "Error updating course",
+      message: "Error updating certificate",
       error: error.message,
     });
   }
 };
 
 // DELETE
-const deleteCourse = async (req, res) => {
-  //#swagger.tags=["Courses"]
+const deleteCertificate = async (req, res) => {
+  //#swagger.tags=["Certificates"]
   try {
     if (!ObjectId.isValid(req.params.id)) {
-      return res.status(400).json("Invalid course ID");
+      return res.status(400).json("Invalid certificate ID");
     }
 
-    const courseId = new ObjectId(req.params.id);
+    const certificateId = new ObjectId(req.params.id);
 
     const response = await mongodb
       .getDatabase()
       .db()
       .collection("courses")
-      .deleteOne({ _id: courseId });
+      .deleteOne({ _id: certificateId });
 
     if (response.deletedCount === 0) {
-      return res.status(404).json("Course not found");
+      return res.status(404).json("Certificate not found");
     }
 
     res.status(204).send();
   } catch (error) {
     res.status(500).json({
-      message: "Error deleting course",
+      message: "Error deleting certificate",
       error: error.message,
     });
   }
@@ -166,8 +157,5 @@ const deleteCourse = async (req, res) => {
 
 module.exports = {
   getAll,
-  getSingle,
-  createCourse,
-  updateCourse,
-  deleteCourse,
+  getSingle,createCertificate, updateCertificate, deleteCertificate
 };

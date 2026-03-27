@@ -8,5 +8,6 @@ router.get("/", (req, res) => {
 });
 
 router.use("/courses", require("./courses"));
+router.use("/certificate", require("./certificate"));
 
 module.exports= router;

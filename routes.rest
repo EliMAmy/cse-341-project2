@@ -1,19 +1,71 @@
 //LOCALHOST
-### Get all users
+### Get all courses
 GET http://localhost:3001/courses
 
-###Get contact by id 
-GET http://localhost:3001/courses/69c43c0e92f2e902a3c5a84d
+###Get course by id 
+GET http://localhost:3001/courses/69c5f1fedf5ffb86229f5420
 
-
-###Put contact
-PUT http://localhost:3001/courses/69c43d5892f2e902a3c5a850
+###Create course 
+POST http://localhost:3001/courses
 Content-type: application/json
 
 {
-    "name": "Web development",
+    "code": "CSE240",
+    "name": "Web development and service",
     "term": "2025 Block 2",
-    "credits": 2
+    "credits": 2,
+    "status": "current",
+    "courseLevel":"Upper Division",
+    "class": 3
 }
-###Delete contact
-DELETE http://localhost:3001/courses/69c43d5892f2e902a3c5a850
+
+###Put course by id
+PUT http://localhost:3001/courses/69c60a734334b1c262ca37a3
+Content-type: application/json
+
+
+{
+    "code": "CSE240",
+    "name": "Web development and service",
+    "term": "2025 Block 2",
+    "credits": 2,
+    "status": "current",
+    "courseLevel":"Upper Division",
+    "class": 4
+}
+###Delete course by id
+DELETE http://localhost:3001/courses/69c60a734334b1c262ca37a3
+
+
+
+
+
+### Get all certificates
+GET http://localhost:3001/certificate
+
+###Get certificate by id 
+GET http://localhost:3001/certificate/69c5f683aecc55c991e1b271
+
+###Create certificate
+POST http://localhost:3001/certificate
+Content-type: application/json
+
+{
+    "code": "CSE240",
+    "name": "Web development and service",
+    "status": "current"
+}
+
+###Put certificate by id
+PUT http://localhost:3001/certificate/69c60cbf4334b1c262ca37a4
+Content-type: application/json
+
+{
+    "code": "CSE240",
+    "name": "Web development and service",
+    "status": "current"
+}
+###Delete certificate by id
+DELETE http://localhost:3001/certificate/
+
+
