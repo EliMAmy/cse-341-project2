@@ -16,11 +16,11 @@ Content-type: application/json
     "credits": 2,
     "status": "current",
     "courseLevel":"Upper Division",
-    "class": 3
+    "class": ""
 }
 
 ###Put course by id
-PUT http://localhost:3001/courses/69c60a734334b1c262ca37a3
+PUT http://localhost:3001/courses/69c84f1aff4c243f642eb44c
 Content-type: application/json
 
 
@@ -32,9 +32,9 @@ Content-type: application/json
     "status": "current",
     "courseLevel":"Upper Division",
     "class": 4
-}
+    }
 ###Delete course by id
-DELETE http://localhost:3001/courses/69c60a734334b1c262ca37a3
+DELETE http://localhost:3001/courses/69c852e6ac2c2b8b6fe41936
 
 
 

@@ -6,7 +6,7 @@ const validateCourse = [
   body("term").notEmpty().withMessage("Term is required"),
   body("credits").isInt({ min: 1 }).withMessage("Credits must be a number"),
   body("status").notEmpty().withMessage("Status is required"),
-  body("class").isInt({ min: 1 }).withMessage("Credits must be a number"),
+  body("class").trim().notEmpty().withMessage("class is required").bail().isInt({ min: 1 }).withMessage("Class must be a number"),
 ];
 const validateDeleteCourse = [
   param("id")
@@ -18,10 +18,22 @@ const validateDeleteCourse = [
 
 
 const validateCertificate = [
-  body("code").notEmpty().withMessage("Code is required"),
-  body("name").notEmpty().withMessage("Name is required"),
-  body("status").notEmpty().withMessage("Status is required"),
+  body("code")
+    .isString().withMessage("Code must be a string")
+    .trim()
+    .notEmpty().withMessage("Code is required"),
+
+  body("name")
+    .isString().withMessage("Name must be a string")
+    .trim()
+    .notEmpty().withMessage("Name is required"),
+
+  body("status")
+    .isString().withMessage("Status must be a string")
+    .trim()
+    .notEmpty().withMessage("Status is required"),
 ];
+
 const validateDeleteCertificate = [
   param("id")
     .notEmpty()
