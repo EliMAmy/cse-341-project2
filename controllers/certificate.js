@@ -139,7 +139,7 @@ const deleteCertificate = async (req, res) => {
     const response = await mongodb
       .getDatabase()
       .db()
-      .collection("courses")
+      .collection("certificates")
       .deleteOne({ _id: certificateId });
 
     if (response.deletedCount === 0) {
