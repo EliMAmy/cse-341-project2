@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Courses Api",
-    "description": "Courses Api",
+    "title": "My Project Api",
+    "description": "My Project 2 Api",
     "version": "1.0.0"
   },
   "host": "cse-341-project2-1c47.onrender.com",
