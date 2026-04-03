@@ -5,7 +5,6 @@ const  coursesController = require("../controllers/courses");
 const validatorCourse = require("../middleware/validator");
 const { isAuthenticated } = require("../middleware/authenticate");
 
-router.use(isAuthenticated);
 
 router.get("/",coursesController.getAll);
 router.get("/:id",coursesController.getSingle);
